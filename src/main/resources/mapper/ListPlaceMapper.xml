@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travel.dao.ListPlaceMapper">
+    <resultMap id="BaseResultMap" type="com.example.travel.domain.ListPlace" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="place_id" jdbcType="INTEGER" property="placeId"/>
+        <result column="place_list_id" jdbcType="INTEGER" property="placeListId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,place_id,place_list_id
+    </sql>
+
+    <insert id="insert" parameterType="com.example.travel.domain.ListPlace">
+        insert into list_place
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="placeId != null">
+                place_id,
+            </if>
+            <if test="placeListId != null">
+                place_list_id,
+            </if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="placeId != null">
+                #{placeId},
+            </if>
+            <if test="placeListId != null">
+                #{placeListId},
+            </if>
+        </trim>        
+    </insert>
+    
+    <update id="update" parameterType="com.example.travel.domain.ListPlace">
+        update list_place
+        <set>
+            <if test="placeId != null">
+                place_id = #{placeId},
+            </if>
+            <if test="placeListId != null">
+                place_list_id = #{placeListId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from list_place
+        where id=#{id}
+    </delete>
+
+    <delete id="deleteByPlaceIdAndPlaceListId" parameterType="java.util.HashMap">
+        delete from list_place
+        where place_id=#{placeId} and place_list_id=#{placeListId}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from list_place
+        where id=#{id}
+    </select>
+
+    <select id="allListPlace" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from list_place
+    </select>
+
+    <select id="listPlaceOfPlaceListId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from list_place
+        where place_list_id=#{placeListId}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

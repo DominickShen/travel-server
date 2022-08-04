@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travel.dao.CollectMapper">
+    <resultMap id="BaseResultMap" type="com.example.travel.domain.Collect" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="place_id" jdbcType="INTEGER" property="placeId"/>
+        <result column="place_list_id" jdbcType="INTEGER" property="placeListId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,type,place_id,place_list_id,create_time
+    </sql>
+
+    <insert id="insert" parameterType="com.example.travel.domain.Collect">
+        insert into collect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="placeId != null">
+                place_id,
+            </if>
+            <if test="placeListId != null">
+                place_list_id,
+            </if>
+            create_time,
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="placeId != null">
+                #{placeId},
+            </if>
+            <if test="placeListId != null">
+                #{placeListId},
+            </if>
+            now(),
+        </trim>        
+    </insert>
+
+    <delete id="delete">
+        delete from collect
+        where id=#{id}
+    </delete>
+
+    <delete id="deleteByUserIdplaceId" parameterType="java.lang.Integer">
+        delete from collect
+        where user_id = #{userId} and place_id = #{placeId}
+    </delete>
+
+    <select id="allCollect" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from collect
+    </select>
+
+    <select id="collectOfUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from collect
+        where user_id = #{userId}
+    </select>
+
+    <select id="existplaceId" resultType="java.lang.Integer">
+        select count(*)
+        from collect
+        where user_id = #{userId} and place_id = #{placeId}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travel.dao.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.example.travel.domain.Comment" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="place_id" jdbcType="INTEGER" property="placeId"/>
+        <result column="place_list_id" jdbcType="INTEGER" property="placeListId"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="up" jdbcType="INTEGER" property="up"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,type,place_id,place_list_id,content,create_time,up
+    </sql>
+
+    <insert id="insert" parameterType="com.example.travel.domain.Comment">
+        insert into comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="placeId != null">
+                place_id,
+            </if>
+            <if test="placeListId != null">
+                place_list_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            create_time,
+            <if test="up != null">
+                up,
+            </if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="placeId != null">
+                #{placeId},
+            </if>
+            <if test="placeListId != null">
+                #{placeListId},
+            </if>
+            <if test="content != null">
+                #{content},
+            </if>
+            now(),
+            <if test="up != null">
+                #{up},
+            </if>
+        </trim>        
+    </insert>
+    
+    <update id="update" parameterType="com.example.travel.domain.Comment">
+        update comment
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="placeId != null">
+                place_id = #{placeId},
+            </if>
+            <if test="placeListId != null">
+                place_list_id = #{placeListId},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="up != null">
+                up = #{up},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from comment
+        where id=#{id}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where id=#{id}
+    </select>
+
+    <select id="allComment" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+    </select>
+
+    <select id="commentOfPlaceId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where place_id = #{placeId}
+    </select>
+
+    <select id="commentOfPlaceListId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from comment
+        where place_list_id = #{placeListId}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

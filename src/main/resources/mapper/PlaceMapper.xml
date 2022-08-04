@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travel.dao.PlaceMapper">
+    <resultMap id="BaseResultMap" type="com.example.travel.domain.Place" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="place_pic" jdbcType="VARCHAR" property="placePic"/>
+        <result column="details" jdbcType="VARCHAR" property="details"/>
+        <result column="trader_id" jdbcType="VARCHAR" property="traderId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.example.travel.domain.Place" extends="BaseResultMap">
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,,name,location,level,intro,place_pic,details,trader_id,create_time,update_time
+    </sql>
+    <sql id="Blob_Column_List">
+         id,name,location,level,intro,place_pic,details,trader_id,create_time,update_time
+    </sql>
+
+
+    <insert id="insert" parameterType="com.example.travel.domain.Place">
+        insert into place
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="intro != null">
+                intro,
+            </if>
+            <if test="placePic != null">
+                place_pic,
+            </if>
+            <if test="details != null">
+                details,
+            </if>
+            <if test="traderId != null">
+                trader_id,
+            </if>
+            create_time,update_time,
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="location != null">
+                #{location},
+            </if>
+            <if test="level != null">
+                #{level},
+            </if>
+            <if test="intro != null">
+                #{intro},
+            </if>
+            <if test="placePic != null">
+                #{placePic},
+            </if>
+            <if test="details != null">
+                #{details},
+            </if>
+            <if test="traderId != null">
+                #{traderId},
+            </if>
+            now(),now(),
+
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="com.example.travel.domain.Place">
+        update place
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="location != null">
+                location = #{location},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="intro != null">
+                intro = #{intro},
+            </if>
+            <if test="placePic != null">
+                place_pic = #{placePic},
+            </if>
+            <if test="details != null">
+                details = #{details},
+            </if>
+            <if test="traderId != null">
+                trader_id = #{traderId},
+            </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from place
+        where id=#{id}
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Blob_Column_List"/>
+        from place
+        where id=#{id}
+    </select>
+
+    <select id="allPlace" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from place
+    </select>
+
+    <select id="placeOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Blob_Column_List"/>
+        from place
+        where name = #{name}
+    </select>
+
+    <select id="placeOfTraderId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Blob_Column_List"/>
+        from place
+        where trader_id = #{traderId}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
