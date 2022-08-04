@@ -1,6 +1,6 @@
 package com.example.travel.domain;
 
-import io.swagger.models.auth.In;
+
 import lombok.Data;
 
 import java.io.Serializable;

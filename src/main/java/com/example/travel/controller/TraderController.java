@@ -4,14 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.travel.domain.Trader;
 import com.example.travel.service.TraderService;
 import com.example.travel.utils.Consts;
-import io.swagger.models.auth.In;
-import org.omg.CORBA.TRANSACTION_MODE;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;

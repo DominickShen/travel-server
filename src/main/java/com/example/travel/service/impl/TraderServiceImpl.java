@@ -3,10 +3,10 @@ package com.example.travel.service.impl;
 import com.example.travel.dao.TraderMapper;
 import com.example.travel.domain.Trader;
 import com.example.travel.service.TraderService;
-import io.swagger.annotations.Api;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
+
 
 import java.util.List;
 

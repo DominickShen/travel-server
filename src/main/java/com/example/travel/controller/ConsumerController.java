@@ -3,10 +3,8 @@ package com.example.travel.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.travel.domain.Consumer;
 import com.example.travel.utils.Consts;
-import com.example.travel.domain.Consumer;
+
 import com.example.travel.service.ConsumerService;
-import com.example.travel.utils.Consts;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

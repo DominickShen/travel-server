@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.travel.domain.Comment;
 import com.example.travel.service.CommentService;
 import com.example.travel.utils.Consts;
-import io.swagger.models.auth.In;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

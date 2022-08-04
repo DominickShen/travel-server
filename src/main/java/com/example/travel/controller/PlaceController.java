@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.travel.domain.Place;
 import com.example.travel.service.PlaceService;
 import com.example.travel.utils.Consts;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
